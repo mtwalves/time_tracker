@@ -9,7 +9,7 @@ class TimeClock {
     day = DateTime.now();
   }
 
-  void punch() => punches.add(DateTime.now());
+  void punch([DateTime? date]) => punches.add(date ?? DateTime.now());
 
   Duration get overtime => workedTime - workload;
 

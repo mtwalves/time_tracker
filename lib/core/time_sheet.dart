@@ -1,6 +1,9 @@
-import 'package:time_tracker/core/time_clock.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-class TimeSheet {
+import 'time_clock.dart';
+
+class TimeSheet extends ChangeNotifier {
   List<TimeClock> _days = [];
 
   List<TimeClock> get days => _days;
@@ -23,6 +26,15 @@ class TimeSheet {
     }
 
     return timeClock;
+  }
+
+  void punch(TimeOfDay time) {
+    DateTime now = DateTime.now();
+    DateTime date =
+        DateTime(now.year, now.month, now.day, time.hour, time.minute);
+    today.punch(date);
+
+    notifyListeners();
   }
 
   Duration get overtime {
